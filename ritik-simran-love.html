@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritik ❤️ Simran</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8a0bf;
+    --deep-rose: #c0547a;
+    --blush: #fce4ec;
+    --crimson: #9b2335;
+    --gold: #d4a853;
+    --night: #1a0a10;
+    --petal: #fff0f5;
+    --text: #3d1a26;
+    --muted: #8c5a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--night);
+    color: var(--petal);
+    overflow-x: hidden;
+  }
+
+  /* ─── FALLING ROSES ─── */
+  #roses-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26,10,16,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,160,191,0.2);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--rose);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--rose); }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 60%, rgba(192,84,122,0.18) 0%, transparent 70%);
+  }
+
+  .hero-heart {
+    font-size: 5rem;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14% { transform: scale(1.2); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.15); }
+    70% { transform: scale(1); }
+  }
+
+  .hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--rose);
+    line-height: 1.1;
+    text-shadow: 0 0 40px rgba(232,160,191,0.5);
+    margin-bottom: 20px;
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--gold);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* ─── COUNTER ─── */
+  .counter-box {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .counter-item {
+    text-align: center;
+  }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--rose);
+    line-height: 1;
+    display: block;
+  }
+
+  .counter-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ─── LOVE BUTTON ─── */
+  .love-btn {
+    background: linear-gradient(135deg, var(--deep-rose), var(--crimson));
+    color: white;
+    border: none;
+    padding: 16px 48px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 30px rgba(192,84,122,0.4);
+  }
+
+  .love-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(192,84,122,0.6);
+  }
+
+  #love-msg {
+    margin-top: 20px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.5s;
+    height: 48px;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--petal);
+    margin-bottom: 48px;
+    line-height: 1.2;
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    margin-bottom: 48px;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rose), var(--crimson));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -34px;
+    top: 6px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--deep-rose);
+    border: 3px solid var(--rose);
+    box-shadow: 0 0 16px rgba(232,160,191,0.5);
+  }
+
+  .timeline-date {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  .timeline-desc {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  /* ─── BIRTHDAY ─── */
+  .bday-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .bday-card {
+    background: rgba(232,160,191,0.06);
+    border: 1px solid rgba(232,160,191,0.2);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .bday-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rose);
+  }
+
+  .bday-emoji { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+  .bday-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--rose);
+    margin-bottom: 6px;
+  }
+
+  .bday-date {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  .bday-countdown {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--petal);
+    line-height: 1;
+  }
+
+  .bday-countdown-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .gallery-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .gallery-slide {
+    min-width: 100%;
+    height: 420px;
+    background: rgba(232,160,191,0.06);
+    border: 1px solid rgba(232,160,191,0.15);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--rose);
+    margin-top: 16px;
+  }
+
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26,10,16,0.7);
+    border: 1px solid var(--rose);
+    color: var(--rose);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-nav:hover { background: var(--deep-rose); color: white; }
+  .gallery-prev { left: 16px; }
+  .gallery-next { right: 16px; }
+
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .gallery-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .gallery-dot.active {
+    background: var(--rose);
+    transform: scale(1.4);
+  }
+
+  /* ─── MEMORY CARDS ─── */
+  .memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .memory-card {
+    background: rgba(232,160,191,0.05);
+    border: 1px solid rgba(232,160,191,0.15);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    cursor: default;
+  }
+
+  .memory-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(232,160,191,0.5);
+    background: rgba(232,160,191,0.1);
+  }
+
+  .memory-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+
+  .memory-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+
+  .memory-text { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+  /* ─── REASONS ─── */
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(232,160,191,0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(232,160,191,0.1);
+    transition: border-color 0.3s;
+  }
+
+  .reason-item:hover { border-color: rgba(232,160,191,0.4); }
+
+  .reason-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    color: var(--rose);
+    opacity: 0.6;
+    min-width: 24px;
+    padding-top: 2px;
+  }
+
+  .reason-text { font-size: 0.9rem; color: var(--petal); line-height: 1.6; }
+
+  /* ─── MUSIC ─── */
+  .music-box {
+    background: rgba(232,160,191,0.06);
+    border: 1px solid rgba(232,160,191,0.2);
+    border-radius: 24px;
+    padding: 48px;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .music-disc {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--deep-rose), var(--night));
+    border: 4px solid var(--rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    margin: 0 auto 24px;
+    animation: spin 8s linear infinite paused;
+  }
+
+  .music-disc.playing { animation-play-state: running; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .music-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  .music-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+
+  .music-btn {
+    background: linear-gradient(135deg, var(--deep-rose), var(--crimson));
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .music-btn:hover { transform: scale(1.05); }
+
+  /* ─── LETTER ─── */
+  .letter-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    background: rgba(252,228,236,0.05);
+    border: 1px solid rgba(232,160,191,0.25);
+    border-radius: 24px;
+    padding: 56px 56px;
+    position: relative;
+  }
+
+  .letter-wrapper::before {
+    content: '❤';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    background: var(--night);
+    padding: 0 12px;
+  }
+
+  .letter-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--petal);
+    white-space: pre-wrap;
+  }
+
+  .letter-sign {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--rose);
+    margin-top: 32px;
+    display: block;
+  }
+
+  /* ─── SECRET PAGE ─── */
+  #secret-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,3,8,0.97);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+
+  #secret-overlay.open { display: flex; }
+
+  .secret-lock { font-size: 4rem; margin-bottom: 24px; animation: heartbeat 1.4s infinite; }
+
+  .secret-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--rose);
+    margin-bottom: 32px;
+  }
+
+  .secret-input {
+    background: rgba(232,160,191,0.08);
+    border: 1px solid var(--rose);
+    color: var(--petal);
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    outline: none;
+    text-align: center;
+    letter-spacing: 0.2em;
+    width: 240px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 16px;
+  }
+
+  .secret-input::placeholder { color: var(--muted); letter-spacing: 0.05em; }
+
+  .secret-err {
+    color: var(--deep-rose);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    height: 20px;
+  }
+
+  .secret-content { display: none; }
+  .secret-content.revealed { display: block; animation: fadeUp 0.8s ease; }
+
+  .secret-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    max-width: 540px;
+    color: var(--petal);
+    margin-bottom: 24px;
+  }
+
+  .secret-close {
+    background: none;
+    border: 1px solid var(--muted);
+    color: var(--muted);
+    padding: 10px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 32px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .secret-close:hover { border-color: var(--rose); color: var(--rose); }
+
+  /* ─── OPEN SECRET TRIGGER ─── */
+  .secret-trigger {
+    display: block;
+    margin: 0 auto;
+    background: rgba(232,160,191,0.06);
+    border: 1px dashed rgba(232,160,191,0.4);
+    color: var(--rose);
+    padding: 20px 48px;
+    border-radius: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    letter-spacing: 0.05em;
+  }
+
+  .secret-trigger:hover { background: rgba(232,160,191,0.12); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid rgba(232,160,191,0.1);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer .footer-heart { color: var(--rose); font-size: 1.1rem; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    nav { padding: 14px 16px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 0.7rem; }
+    .bday-grid { grid-template-columns: 1fr; }
+    .letter-wrapper { padding: 36px 24px; }
+    section { padding: 80px 16px; }
+    .counter-box { gap: 20px; }
+    .counter-num { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Falling roses canvas -->
+<canvas id="roses-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">R ❤ S</span>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#birthday">Birthday</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reasons">Love</a></li>
+    <li><a href="#letter">Letter</a></li>
+    <li><a href="#secret">Secret</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="home" style="max-width:100%;padding-top:0;">
+  <span class="hero-heart">❤️</span>
+  <h1 class="hero-title">Ritik ❤️ Simran</h1>
+  <p class="hero-sub">
+    "6 May 2023 se meri zindagi<br>aur bhi khoobsurat ho gayi."
+  </p>
+
+  <div class="counter-box">
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-years">0</span>
+      <span class="counter-label">Saal</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-months">0</span>
+      <span class="counter-label">Mahine</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-days">0</span>
+      <span class="counter-label">Din</span>
+    </div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-hours">0</span>
+      <span class="counter-label">Ghante</span>
+    </div>
+  </div>
+
+  <button class="love-btn" onclick="sendLove()">💌 I Love You, Simran!</button>
+  <div id="love-msg"></div>
+</section>
+
+<!-- ═══════════ LOVE STORY ═══════════ -->
+<section id="story">
+  <span class="section-eyebrow">Hamari Kahani</span>
+  <h2 class="section-title">Love Story ❤️</h2>
+  <div class="section-divider"></div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">6 May 2023</div>
+      <div class="timeline-title">Woh Khaas Din ❤️</div>
+      <p class="timeline-desc">Jis din se dono ki zindagi mein ek naya rang aa gaya. Yeh woh din tha jab dil ne pehli baar suna — yeh wahi hai jo hum dhoondh rahe the.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Pehli Mulaqat</div>
+      <div class="timeline-title">Pehli Baat, Pehla Ehsaas 🌸</div>
+      <p class="timeline-desc">Jab pehli baar baat hui, toh dil dhadka alag andaaz mein. Woh pal aaj bhi yaad hai — har lafz, har hansi, har khamoshi.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Pehli Call 📞</div>
+      <div class="timeline-title">Teri Awaaz Mein Jaan Hai</div>
+      <p class="timeline-desc">Pehli baar jab awaaz suni, toh laga koi bichri hue geet ki dhun mil gayi. Ghante kab nikal gaye, pata hi nahi chala.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Special Moment 🌙</div>
+      <div class="timeline-title">Woh Yaadgar Pal</div>
+      <p class="timeline-desc">Kuch pal hote hain jo dil ki gehraion mein utar jaate hain — woh moment tha jab dono ko yakin ho gaya ki yeh rishta kuch khaas hai.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Aaj ✨</div>
+      <div class="timeline-title">Saath Chalte Hain</div>
+      <p class="timeline-desc">Aaj bhi, kal bhi, aur jab tak saans chale — yeh kahani chalti rahegi. Har din ek naya adhyaay, har pal ek nayee khushi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BIRTHDAY ═══════════ -->
+<section id="birthday">
+  <span class="section-eyebrow">Janamdin Mubarak</span>
+  <h2 class="section-title">🎂 Birthday Countdown</h2>
+  <div class="section-divider"></div>
+
+  <div class="bday-grid reveal">
+    <div class="bday-card">
+      <span class="bday-emoji">🎉</span>
+      <div class="bday-name">Ritik</div>
+      <div class="bday-date">8 March</div>
+      <div class="bday-countdown" id="ritik-days">—</div>
+      <div class="bday-countdown-label">Din Bache Hain</div>
+    </div>
+    <div class="bday-card">
+      <span class="bday-emoji">🌸</span>
+      <div class="bday-name">Simran</div>
+      <div class="bday-date">14 August</div>
+      <div class="bday-countdown" id="simran-days">—</div>
+      <div class="bday-countdown-label">Din Bache Hain</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GALLERY ═══════════ -->
+<section id="gallery">
+  <span class="section-eyebrow">Tasveeren</span>
+  <h2 class="section-title">Photo Gallery 🖼️</h2>
+  <div class="section-divider"></div>
+
+  <div class="gallery-wrapper reveal">
+    <div class="gallery-track" id="gallery-track">
+      <div class="gallery-slide"><span>🌹</span><span class="gallery-caption">Hamari Pehli Yaad</span></div>
+      <div class="gallery-slide"><span>💕</span><span class="gallery-caption">Khushiyan Saath Mein</span></div>
+      <div class="gallery-slide"><span>🌸</span><span class="gallery-caption">Teri Muskaan</span></div>
+      <div class="gallery-slide"><span>✨</span><span class="gallery-caption">Special Moments</span></div>
+      <div class="gallery-slide"><span>🌙</span><span class="gallery-caption">Raat Ki Baat</span></div>
+      <div class="gallery-slide"><span>💝</span><span class="gallery-caption">Hamesha Saath</span></div>
+    </div>
+    <button class="gallery-nav gallery-prev" onclick="galleryMove(-1)">‹</button>
+    <button class="gallery-nav gallery-next" onclick="galleryMove(1)">›</button>
+  </div>
+  <div class="gallery-dots" id="gallery-dots"></div>
+  <p style="text-align:center;color:var(--muted);font-size:0.82rem;margin-top:20px;">💡 Apni photos add karne ke liye yeh file ek developer ko bhejo!</p>
+</section>
+
+<!-- ═══════════ MEMORIES ═══════════ -->
+<section id="memories">
+  <span class="section-eyebrow">Yaadon Ka Pitara</span>
+  <h2 class="section-title">Special Memories 💌</h2>
+  <div class="section-divider"></div>
+
+  <div class="memories-grid">
+    <div class="memory-card reveal">
+      <span class="memory-icon">💬</span>
+      <div class="memory-title">Pehla Chat</div>
+      <p class="memory-text">Jab pehli baar message kiya aur reply ka intezaar — woh pal dil ki dhadkan se bhi zyada tez tha.</p>
+    </div>
+    <div class="memory-card reveal">
+      <span class="memory-icon">🎁</span>
+      <div class="memory-title">Pehla Tohfa</div>
+      <p class="memory-text">Choti si cheez, bada ehsaas. Jab tune pehli baar kuch diya, usme saari duniya thi meri.</p>
+    </div>
+    <div class="memory-card reveal">
+      <span class="memory-icon">🌹</span>
+      <div class="memory-title">Pehli Date</div>
+      <p class="memory-text">Woh din jo dil mein bas gaya — teri hansi, teri baatein, woh hawa bhi itni khoobsurat thi.</p>
+    </div>
+    <div class="memory-card reveal">
+      <span class="memory-icon">😂</span>
+      <div class="memory-title">Funny Moments</div>
+      <p class="memory-text">Tere saath hasna — woh hasna hai jo thakta nahi. Tu meri sabse achhi dost bhi hai.</p>
+    </div>
+    <div class="memory-card reveal">
+      <span class="memory-icon">🌙</span>
+      <div class="memory-title">Late Night Talks</div>
+      <p class="memory-text">Raat ke 2 baje bhi teri awaaz sun ke neend door ho jaati thi — woh ghante mere favorite hain.</p>
+    </div>
+    <div class="memory-card reveal">
+      <span class="memory-icon">🤝</span>
+      <div class="memory-title">Mushkil Waqt Mein Saath</div>
+      <p class="memory-text">Jab sab door the, tu wahan thi. Teri wajah se lagaa ki koi hai jo samajhta hai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ REASONS ═══════════ -->
+<section id="reasons">
+  <span class="section-eyebrow">Dil Ki Baat</span>
+  <h2 class="section-title">Kyun Karta Hoon Tumse Pyaar 💞</h2>
+  <div class="section-divider"></div>
+
+  <div class="reasons-grid reveal">
+    <div class="reason-item"><span class="reason-num">01</span><span class="reason-text">Teri muskaan jab aa jaati hai, sab kuch theek lag jaata hai</span></div>
+    <div class="reason-item"><span class="reason-num">02</span><span class="reason-text">Teri caring nature — tu hamesha sochti hai doosron ke baare mein</span></div>
+    <div class="reason-item"><span class="reason-num">03</span><span class="reason-text">Jab main toot-a, tune sambhala — bina kuch mange</span></div>
+    <div class="reason-item"><span class="reason-num">04</span><span class="reason-text">Teri aankhon mein ek alag hi duniya hai</span></div>
+    <div class="reason-item"><span class="reason-num">05</span><span class="reason-text">Tu har cheez mein honest hai, aur yeh mujhe pasand hai</span></div>
+    <div class="reason-item"><span class="reason-num">06</span><span class="reason-text">Teri hansi ki awaaz — sabse sundar sangeet</span></div>
+    <div class="reason-item"><span class="reason-num">07</span><span class="reason-text">Tu mere sapno ko seriously leti hai</span></div>
+    <div class="reason-item"><span class="reason-num">08</span><span class="reason-text">Teri baatein khatam hi nahi hoti, aur main sunna chahta hoon</span></div>
+    <div class="reason-item"><span class="reason-num">09</span><span class="reason-text">Tu mujhe better insaan banaati hai</span></div>
+    <div class="reason-item"><span class="reason-num">10</span><span class="reason-text">Mushkil waqt mein tu sab se pehle yaad aati hai</span></div>
+    <div class="reason-item"><span class="reason-num">11</span><span class="reason-text">Teri caring without expecting anything back</span></div>
+    <div class="reason-item"><span class="reason-num">12</span><span class="reason-text">Tere saath silence bhi comfortable lagti hai</span></div>
+    <div class="reason-item"><span class="reason-num">13</span><span class="reason-text">Tu meri galtiyon ko samajhti hai aur maaf karti hai</span></div>
+    <div class="reason-item"><span class="reason-num">14</span><span class="reason-text">Tera sense of humor — tu mujhe hasa deti hai jab main udaas hoon</span></div>
+    <div class="reason-item"><span class="reason-num">15</span><span class="reason-text">Tu teri family ke liye jo kuch karti hai — woh sab dekh ke dil bhar aata hai</span></div>
+    <div class="reason-item"><span class="reason-num">16</span><span class="reason-text">Tera gussa bhi cute lagta hai mujhe</span></div>
+    <div class="reason-item"><span class="reason-num">17</span><span class="reason-text">Tu kabhi judge nahi karti — bas sunti hai</span></div>
+    <div class="reason-item"><span class="reason-num">18</span><span class="reason-text">Teri mehnat aur dedication — mujhe inspire karti hai</span></div>
+    <div class="reason-item"><span class="reason-num">19</span><span class="reason-text">Teri awaaz mein sukoon hai — sab thakaan door ho jaati hai</span></div>
+    <div class="reason-item"><span class="reason-num">20</span><span class="reason-text">Tere saath har pal ek khaas yaad ban jaati hai</span></div>
+    <div class="reason-item"><span class="reason-num">21</span><span class="reason-text">Tu khud se zyada doosron ki parwah karti hai</span></div>
+    <div class="reason-item"><span class="reason-num">22</span><span class="reason-text">Teri simplicity mein ek alag hi khoobsoorti hai</span></div>
+    <div class="reason-item"><span class="reason-num">23</span><span class="reason-text">Jab main sahi hoon, tu meri tarif karti hai — aur jab galat, mujhe batati hai</span></div>
+    <div class="reason-item"><span class="reason-num">24</span><span class="reason-text">Tu meri baat ko seriously leti hai</span></div>
+    <div class="reason-item"><span class="reason-num">25</span><span class="reason-text">Tere bina din poora nahi lagta — sirf teri yaad se chain aata hai</span></div>
+  </div>
+</section>
+
+<!-- ═══════════ MUSIC ═══════════ -->
+<section id="music">
+  <span class="section-eyebrow">Hamare Geet</span>
+  <h2 class="section-title">🎵 Our Song</h2>
+  <div class="section-divider"></div>
+
+  <div class="music-box reveal">
+    <div class="music-disc" id="music-disc">🎵</div>
+    <div class="music-title">Tum Hi Ho</div>
+    <p class="music-sub">Aashiqui 2 • Arijit Singh<br><span style="color:var(--rose);">— Humara Sapna Song 💕</span></p>
+    <button class="music-btn" onclick="toggleMusic()" id="music-btn">▶ Play Karo</button>
+    <p style="margin-top:16px;font-size:0.78rem;color:var(--muted);">YouTube pe jaake sunna hai — link neeche hai 🎶</p>
+    <a href="https://youtu.be/Umqb9KENgmk" target="_blank" style="display:inline-block;margin-top:8px;color:var(--rose);font-size:0.85rem;">🎧 YouTube pe Sunno</a>
+  </div>
+</section>
+
+<!-- ═══════════ LETTER ═══════════ -->
+<section id="letter">
+  <span class="section-eyebrow">Dil Se</span>
+  <h2 class="section-title">💌 Ek Khat Simran Ke Naam</h2>
+  <div class="section-divider"></div>
+
+  <div class="letter-wrapper reveal">
+    <div class="letter-text">Dear Simran,
+
+Yeh khat likhte waqt dil mein ek alag hi khushi hai — teri wajah se.
+
+6 May 2023 se lekar aaj tak, tumne mere har pal ko khaas bana diya. Tum nahi jaanti shayad, lekin jis din se tum mere life mein aayi ho — har subah thodi aur sunehri lagti hai, aur raat thodi aur sukoon wali.
+
+Tune mujhe sikhaya ki pyaar sirf bade-bade kaam nahi hota. Pyaar hota hai — ek choti si "kha liya?" ki message mein, ek udaas pal mein "main hoon na" sunne mein, ek hansi mein jo sirf tum de sakti ho.
+
+Main teri har ada ka qaayil hoon — teri zid ka bhi, teri chupi ka bhi, teri hansi ka bhi, aur teri aankhon ki us khushi ka bhi jo tab aati hai jab sab theek hota hai.
+
+Tum meri zindagi ka sabse khoobsurat hissa ho. Aur jab bhi main sochta hoon ki "kaash..." — toh sochta hoon kaash tumhara haath hamesha mere haath mein ho.
+
+Teri har kami ko main bhar dene ki koshish karunga. Teri har khushi mein shamil rahunga. Aur teri har mushkil mein — sabse pehle main hounga.
+
+Promise hai.
+
+Hamesha tumhara,</div>
+    <span class="letter-sign">Ritik ❤️</span>
+  </div>
+</section>
+
+<!-- ═══════════ SECRET ═══════════ -->
+<section id="secret">
+  <span class="section-eyebrow">Kuch Khaas</span>
+  <h2 class="section-title">🔐 Secret Message</h2>
+  <div class="section-divider"></div>
+
+  <button class="secret-trigger reveal" onclick="openSecret()">
+    🔒 Ek Khaas Message Tumhare Liye — Darwaza Kholo
+  </button>
+</section>
+
+<!-- SECRET OVERLAY -->
+<div id="secret-overlay">
+  <div id="secret-lock-screen">
+    <span class="secret-lock">🔐</span>
+    <div class="secret-title">Secret Page</div>
+    <p style="color:var(--muted);margin-bottom:24px;font-size:0.9rem;">Password enter karo, Simran 💕</p>
+    <input class="secret-input" type="password" id="secret-pass" placeholder="Password..." maxlength="20" onkeydown="if(event.key==='Enter')checkSecret()">
+    <br>
+    <div class="secret-err" id="secret-err"></div>
+    <button class="love-btn" onclick="checkSecret()" style="margin-bottom:16px;">Unlock ❤️</button>
+    <br>
+    <button class="secret-close" onclick="closeSecret()">Wapas Jao</button>
+    <p style="color:var(--muted);font-size:0.75rem;margin-top:16px;">Hint: Hamari anniversary date (DDMMYYYY)</p>
+  </div>
+
+  <div class="secret-content" id="secret-content">
+    <span style="font-size:5rem;display:block;margin-bottom:16px;animation:heartbeat 1.4s infinite;">💝</span>
+    <h2 style="font-family:'Dancing Script',cursive;font-size:3rem;color:var(--rose);margin-bottom:24px;">Sirf Tumhare Liye</h2>
+    <p class="secret-msg">
+      Simran... agar yeh page tak pahunchi ho, toh jaanti ho ki main tumse kitna pyaar karta hoon. 🌹<br><br>
+      Yeh duniya mein kaafi log hain jo kehte hain "I love you" — main kehna chahta hoon ki tumhare bina main adhoora hoon.<br><br>
+      Tumhara chehra jab yaad aata hai, toh dil ko sukoon milta hai. Tumhari awaaz jab kaan mein padti hai, toh duniya ki sari thakaan door ho jaati hai.<br><br>
+      Yeh secret page sirf isliye banaya — taaki ek baar aur bol sakun, bina kisi ko bataye...<br><br>
+      <strong style="color:var(--gold);font-size:1.4rem;">Main Tumse Bahut Pyaar Karta Hoon, Simran. 💕</strong><br><br>
+      Hamesha. Har pal. Har janam.
+    </p>
+    <div style="font-size:3rem;margin-bottom:24px;">🌹💕🌸💝✨</div>
+    <button class="secret-close" onclick="closeSecret()">❤️ Wapas Jao</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Dancing Script',cursive;font-size:2rem;color:var(--rose);margin-bottom:12px;">Ritik ❤️ Simran</p>
+  <p>6 May 2023 — Hamesha ❤️</p>
+  <p style="margin-top:8px;font-size:0.75rem;">Made with <span class="footer-heart">❤️</span> sirf tumhare liye</p>
+</footer>
+
+<script>
+// ─── FALLING ROSES ───
+const canvas = document.getElementById('roses-canvas');
+const ctx = canvas.getContext('2d');
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
+
+const PETALS = Array.from({length: 30}, () => ({
+  x: Math.random() * W,
+  y: Math.random() * H - H,
+  size: 14 + Math.random() * 16,
+  speed: 0.6 + Math.random() * 1.2,
+  swing: Math.random() * 2 * Math.PI,
+  swingSpeed: 0.008 + Math.random() * 0.012,
+  swingAmt: 40 + Math.random() * 60,
+  rot: Math.random() * Math.PI * 2,
+  rotSpeed: (Math.random() - 0.5) * 0.03,
+  emoji: ['🌹','🌸','🌺','💐','🌷'][Math.floor(Math.random()*5)]
+}));
+
+function drawPetals() {
+  ctx.clearRect(0,0,W,H);
+  PETALS.forEach(p => {
+    p.y += p.speed;
+    p.swing += p.swingSpeed;
+    p.rot += p.rotSpeed;
+    const drawX = p.x + Math.sin(p.swing) * p.swingAmt;
+    if (p.y > H + 40) { p.y = -40; p.x = Math.random() * W; }
+    ctx.save();
+    ctx.translate(drawX, p.y);
+    ctx.rotate(p.rot);
+    ctx.font = `${p.size}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.globalAlpha = 0.65;
+    ctx.fillText(p.emoji, 0, 0);
+    ctx.restore();
+  });
+  requestAnimationFrame(drawPetals);
+}
+drawPetals();
+
+// ─── RELATIONSHIP COUNTER ───
+function updateCounter() {
+  const start = new Date('2023-05-06T00:00:00');
+  const now = new Date();
+  const diff = now - start;
+
+  const totalDays = Math.floor(diff / 86400000);
+  const years = Math.floor(totalDays / 365);
+  const months = Math.floor((totalDays % 365) / 30);
+  const days = totalDays % 30;
+  const hours = Math.floor((diff % 86400000) / 3600000);
+
+  document.getElementById('cnt-years').textContent = years;
+  document.getElementById('cnt-months').textContent = months;
+  document.getElementById('cnt-days').textContent = days;
+  document.getElementById('cnt-hours').textContent = hours;
+}
+updateCounter();
+setInterval(updateCounter, 60000);
+
+// ─── BIRTHDAY COUNTDOWNS ───
+function daysUntil(month, day) {
+  const now = new Date();
+  let next = new Date(now.getFullYear(), month - 1, day);
+  if (next <= now) next.setFullYear(next.getFullYear() + 1);
+  return Math.ceil((next - now) / 86400000);
+}
+document.getElementById('ritik-days').textContent = daysUntil(3, 8);
+document.getElementById('simran-days').textContent = daysUntil(8, 14);
+
+// ─── LOVE BUTTON ───
+const loveMessages = [
+  "Tum meri duniya ho! 🌍",
+  "Pyaar karta hoon tumse! ❤️",
+  "Aaj bhi, kal bhi, hamesha! 💕",
+  "Sirf tumhara hoon! 🌹",
+  "Tum meri muskaan ho! 😊",
+  "Jaan hoon meri, Simran! 💝",
+];
+let loveIdx = 0;
+function sendLove() {
+  const msg = document.getElementById('love-msg');
+  msg.textContent = loveMessages[loveIdx++ % loveMessages.length];
+  msg.style.opacity = 1;
+  setTimeout(() => msg.style.opacity = 0, 2500);
+
+  // burst hearts
+  for (let i = 0; i < 8; i++) {
+    const h = document.createElement('div');
+    h.textContent = '❤️';
+    h.style.cssText = `position:fixed;font-size:${20+Math.random()*20}px;left:${30+Math.random()*40}%;top:60%;pointer-events:none;z-index:10000;animation:burstHeart 1.2s ease forwards`;
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1300);
+  }
+}
+
+const style = document.createElement('style');
+style.textContent = `@keyframes burstHeart {
+  0% { transform: translateY(0) scale(1); opacity:1; }
+  100% { transform: translateY(-${200+Math.random()*200}px) scale(0); opacity:0; }
+}`;
+document.head.appendChild(style);
+
+// ─── GALLERY ───
+let galleryIdx = 0;
+const slides = document.querySelectorAll('.gallery-slide');
+const track = document.getElementById('gallery-track');
+const dotsContainer = document.getElementById('gallery-dots');
+
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'gallery-dot' + (i===0?' active':'');
+  d.onclick = () => goToSlide(i);
+  dotsContainer.appendChild(d);
+});
+
+function goToSlide(n) {
+  galleryIdx = (n + slides.length) % slides.length;
+  track.style.transform = `translateX(-${galleryIdx * 100}%)`;
+  document.querySelectorAll('.gallery-dot').forEach((d,i) => d.classList.toggle('active', i===galleryIdx));
+}
+
+function galleryMove(dir) { goToSlide(galleryIdx + dir); }
+setInterval(() => galleryMove(1), 4000);
+
+// ─── MUSIC ───
+let musicPlaying = false;
+function toggleMusic() {
+  musicPlaying = !musicPlaying;
+  document.getElementById('music-disc').classList.toggle('playing', musicPlaying);
+  document.getElementById('music-btn').textContent = musicPlaying ? '⏸ Rok Do' : '▶ Play Karo';
+}
+
+// ─── SECRET ───
+function openSecret() { document.getElementById('secret-overlay').classList.add('open'); }
+function closeSecret() {
+  document.getElementById('secret-overlay').classList.remove('open');
+  document.getElementById('secret-pass').value = '';
+  document.getElementById('secret-err').textContent = '';
+  document.getElementById('secret-lock-screen').style.display = 'block';
+  document.getElementById('secret-content').classList.remove('revealed');
+}
+
+function checkSecret() {
+  const pass = document.getElementById('secret-pass').value.trim();
+  // Password: 06052023 (anniversary date DDMMYYYY)
+  if (pass === '06052023') {
+    document.getElementById('secret-lock-screen').style.display = 'none';
+    document.getElementById('secret-content').classList.add('revealed');
+  } else {
+    const err = document.getElementById('secret-err');
+    err.textContent = 'Galat password, Simran! 😄 Phir try karo...';
+    document.getElementById('secret-pass').value = '';
+    setTimeout(() => err.textContent = '', 2500);
+  }
+}
+
+// ─── SCROLL REVEAL ───
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
